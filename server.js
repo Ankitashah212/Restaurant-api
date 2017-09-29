@@ -18,9 +18,9 @@ var PORT = 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
     console.log("App listening on PORT " + PORT);
-  });
+});
 
 
 //  Reservations (DATA)
@@ -28,10 +28,22 @@ app.listen(PORT, function() {
 
 var reservations = [
     {
-      name: "Yoda",
-      phone: 411,
-      email: "awesome@cool.org",
-      uniqueId: "yoda"
+        name: "Yoda",
+        phone: 411,
+        email: "awesome@cool.org",
+        uniqueId: "yoda"
+    },
+    {
+        name: "Joda",
+        phone: 911,
+        email: "awesome@cool.org",
+        uniqueId: "yoda1"
+    },
+    {
+        name: "Koda",
+        phone: 111,
+        email: "awesome2@cool.org",
+        uniqueId: "yoda2"
     }
 ]
 
@@ -40,54 +52,54 @@ var reservations = [
 
 // Basic route that sends the user first to the AJAX Page
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "/view/home.html"));
-  });
+});
 
-app.get("/reserve", function(req, res) {
+app.get("/reserve", function (req, res) {
     res.sendFile(path.join(__dirname, "/view/reserve.html"));
 });
 
-app.get("/tables", function(req, res) {
+app.get("/tables", function (req, res) {
     res.sendFile(path.join(__dirname, "/view/tables.html"));
 });
 
 // Get all reservations
-app.get("/all", function(req, res) {
+app.get("/all", function (req, res) {
     res.json(reservations);
-  });
+});
 
 // Search for Specific Reserver (or all reservations) - provides JSON
 
-app.get("/api/:reservations?", function(req, res) {
+app.get("/api/:reservations?", function (req, res) {
     var chosen = req.params.reservations;
-  
+
     if (chosen) {
-      console.log(chosen);
-  
-      for (var i = 0; i < reservations.length; i++) {
-        if (chosen === reservations[i].uniqueId) {
-          return res.json(reservations[i]);
+        console.log(chosen);
+
+        for (var i = 0; i < reservations.length; i++) {
+            if (chosen === reservations[i].uniqueId) {
+                return res.json(reservations[i]);
+            }
         }
-      }
-      return res.json(false);
+        return res.json(false);
     }
     return res.json(reservations);
-  });
+});
 
 
 
 // Create New Reservations - takes in JSON input
 
-app.post("/api/new", function(req, res) {
+app.post("/api/new", function (req, res) {
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body-parser middleware
     var newreservation = req.body;
     newreservation.uniqueId = newreservation.name.replace(/\s+/g, "").toLowerCase();
-  
+
     console.log(newreservation);
-  
+
     reservations.push(newreservation);
-  
+
     res.json(newreservation);
-  });
+});
