@@ -9,15 +9,35 @@
     <title>Current Reservations and Waiting List</title>
 </head>
 <body>
+    <style>
+         .fa-table{
+            font-size: 25px;
+        }
+        .fa-table:before {
+            margin-right: 5px;
+        }
+        #table-button{
+            height:50px;
+            width:175px;
+            font-size: 22px;
+        }
+        #home-button{
+            height:50px;
+            width:80px;
+        }
+        .fa-home{
+            font-size: 40px;
+        }
+    </style>
         <div class="container main">
                 <div class="jumbotron">
                     <h1 class="text-center">Hot Restaurant</h1>
                     <hr>
-                    <h2 class="text-center">We only have 5 tables! Book your seat before they all are gone!
+                    <h2 class="text-center">Current Reservations and Waiting List
                     </h2>
                     <div class="text-center">
-                        <button class="btn btn-info"><i class="fa fa-table" aria-hidden="true"></i>View Tables</button>
-                        <button class="btn btn-secondary"><i class="fa fa-home" aria-hidden="true"></i></button>
+                        <button class="btn btn-info" id="table-button"><i class="fa fa-table" aria-hidden="true"></i>View Tables</button>
+                        <button class="btn btn-secondary" id="home-button"><i class="fa fa-home" aria-hidden="true"></i></button>
                     </div>
                 </div>
         </div>
