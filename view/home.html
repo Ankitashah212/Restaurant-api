@@ -5,9 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/7666e0844e.js"></script>
     <title>Home</title>
 </head>
 <body>
+    <style>
+        .fa-table{
+            font-size: 23px;
+        }
+        .fa-table:before {
+            margin-right: 5px;
+        }
+        .fa-calendar-check-o{
+            font-size: 25px;
+        }
+        .fa-calendar-check-o:before {
+            margin-right: 5px;
+        }
+        #table-button{
+            height:50px;
+            width:150px;
+        }
+        #reservation-button{
+            height:50px;
+            width:200px;
+        }
+        
+    </style>
     <div class="container main">
         <div class="jumbotron">
             <h1 class="text-center">Hot Restaurant</h1>
@@ -15,8 +39,8 @@
             <h2 class="text-center">We only have 5 tables! Book your seat before they all are gone!
             </h2>
             <div class="text-center">
-                <button class="btn btn-info">View Tables</button>
-                <button class="btn btn-danger">Make Reservations</button>
+                <button class="btn btn-info" id="table-button"><i class="fa fa-table" aria-hidden="true"></i>View Tables</button>
+                <button class="btn btn-danger" id="reservation-button"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>Make Reservations</button>
             </div>
         </div>
     </div>
