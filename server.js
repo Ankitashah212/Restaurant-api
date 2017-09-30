@@ -53,25 +53,30 @@ var reservations = [
 // Basic route that sends the user first to the AJAX Page
 
 app.get("/", function (req, res) {
+    console.log("app.get('/')");
     res.sendFile(path.join(__dirname, "/view/home.html"));
 });
 
 app.get("/reserve", function (req, res) {
+    console.log("app.get('/reserve')");
     res.sendFile(path.join(__dirname, "/view/reserve.html"));
 });
 
 app.get("/tables", function (req, res) {
+    console.log("app.get('/tables')");
     res.sendFile(path.join(__dirname, "/view/tables.html"));
 });
 
 // Get all reservations
 app.get("/all", function (req, res) {
+    console.log("app.get('/all')");
     res.json(reservations);
 });
 
 // Search for Specific Reserver (or all reservations) - provides JSON
 
 app.get("/api/:reservations?", function (req, res) {
+    console.log("app.get('/:reservations?')");
     var chosen = req.params.reservations;
 
     if (chosen) {
@@ -92,6 +97,7 @@ app.get("/api/:reservations?", function (req, res) {
 // Create New Reservations - takes in JSON input
 
 app.post("/api/new", function (req, res) {
+    console.log("app.post('/api/new')");
     // req.body hosts is equal to the JSON post sent from the user
     // This works because of our body-parser middleware
     var newreservation = req.body;
