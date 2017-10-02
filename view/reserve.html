@@ -56,23 +56,27 @@
                     <div class="card">
                         <div class="card-header">Table Reservation</div>
                         <div class="card-block">
-                            <form id="reg-form">
-                                <div class="form-group">
-                                    <label for="Name">Name</label>
-                                    <input type="text" class="form-control" id="NameInput" placeholder="Jane Doe" required>
-                                    <label for="Phone">Phone Number</label>
-                                    <input type="text" class="form-control" id="PhoneInput" placeholder="555-206-5678" required>
-                                    <label for="Email">Email</label>
-                                    <input type="text" class="form-control" id="EmailInput" placeholder="JDoe@gmail.com" required>
-                                    <label for="ID">Unique ID</label>
-                                    <input type="text" class="form-control" id="IDInput" placeholder="1001" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-md" id="post-btn"></button>
+                            <div class="form-group">
+                                <form id="form">
+                                        name: "Joda",
+                                        phone: 911,
+                                        email: "awesome@cool.org",
+                                        uniqueId: "yoda1"
+                                                                    
+                                    <label for="NameInput">Name</label>
+                                    <input type="text" class="form-control" name="name" id="NameInput" placeholder="Jane Doe" required>
+                                    <label for="PhoneInput">Phone Number</label>
+                                    <input type="text" class="form-control" name="phone" id="PhoneInput" placeholder="555-206-5678" required>
+                                    <label for="EmailInput">Email</label>
+                                    <input type="text" class="form-control" name="email" id="EmailInput" placeholder="JDoe@gmail.com" required>
+                                    <label for="IDInput">Unique ID</label>
+                                    <input type="text" class="form-control" name="uniqueId" id="IDInput" placeholder="1001" required>
                                 <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
                                 <!-- <button type="button" class="btn btn-primary" id="post-btn">Submit</button> -->
                                 <br>
-                                <div id="DEBUG"></div>
-                            </form>
+                                </form>
+                                <button type="button" class="btn btn-primary btn-md" id="post-btn">Submit</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,17 +84,36 @@
         </div>
         <script>
             $(document).ready(function(){
-                $("#post-btn").click(function(){
+                //PREVENT REFRESH OF PAGE ON CLICK (Default Behavior)
+                console.log("Document Ready!");
+                $("#post-btn").click(function(event){
+                    event.preventDefault();
                     console.log("#post-btn Click Event!");
-                    $("#debug").text($("form").serialize());
+                    console.log("$('#form').serialize()", $("#form").serialize());
+                    // alert(data_array);
+                    json_data = JSON.stringify($("#form").serializeArray());
+                    console.log("json_data", json_data);
+                    console.log("json_data[0]", json_data[0]);
+                    console.log("json_data.length", json_data.length);
+                    //$.get("/api/" + searchedCharacter, function(data) {
+                    $.post("/api/new", json_data, function(data) {
+                        console.log("Callback from /api/new, data", data);
+                        if (data) {
+                            console.log("Process Data here (Not Implemented Yet)");
+                            // $("#stats").show();
+                            // $("#name").text(data.name);
+                            // $("#role").text(data.role);
+                            // $("#age").text(data.age);
+                            // $("#force-points").text(data.forcePoints);
+                        }
+                        else {
+                            console.log("No Data!");
+                            // $("#name").text("The force is not strong with this one. Your character was not found.");
+                            // $("#stats").hide();
+                        }
+                    });
                 });
             });
-/*             $("#post-btn").click(function(){        
-                $.post("http://localhost:3000", $("#reg-form").serialize(), function(data) {
-                    alert(data);
-                });
-            });
- */
         </script>
     </body>
 </html>
